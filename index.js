@@ -89,11 +89,15 @@ function Car(model, milesPerGallon) {
   this.odometer = 0;
 }
 
-Car.prototype.fill(gallons) = function(){
-  return gallons + this.tank;
+Car.prototype.fill = function(gallons){
+  this.tank += gallons ;
 }
 
-console.log(`task 2`, Car(`toyota`, `50mpg`))
+const toyota = new Car(`toyota`, 50);
+
+toyota.fill(50)
+
+console.log(`task 2`, toyota.tank)
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
@@ -101,18 +105,23 @@ console.log(`task 2`, Car(`toyota`, `50mpg`))
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
- 
+function Baby(name, age, favoriteToy) {
+ Person.call(this, name, age,);
+this.favoriteToy = favoriteToy;
 }
 
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`;
+}
 
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. window: when this isn't specfically given an identifier, an error occurs that highlights the entire window's contents
+  2. implicit whatever is to the left of the `.` will be looked at as "this"
+  3. explicit using the .call, .apply, .bind to identify the this.
+  4. new binding creates a new array with the construction function.
 */
 
 
